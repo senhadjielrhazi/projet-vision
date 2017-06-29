@@ -1,0 +1,57 @@
+#/*
+#include <iostream.h>
+#include "lmeds.h"
+
+void residual(const double *x, /* I: parameter vector */
+			   const int nb, /* I: number of residuals to be computed */
+			   const int *indexes, /* I: indexes of data to be used */
+			   double *resid /* O: computed residuals */
+	      )		/* I: function which calculates the residuals */
+{
+}
+	  
+int estimator(double *x, /* O: estimated parameter vector */
+			   const int nb, /* I: number of data to be used */
+			   const int *indexes /* I: indexes of data to be used */
+	      )		/* I: function which estimate the parameters
+				 * returns the number of solutions */
+{
+	if (nb!=4)
+		return 0;
+
+	return 1;
+}
+	  
+int main()
+{
+	double H[8];
+	int outliers[12];
+	int nbOutliers;
+
+	int ret=miniLMedS(12,	/* I: the number of Data, which is ordered from 0 */
+						4,	/* I: size of each randomly selected subset of data */
+						0,		/* I: randomly selected subsets, can be set to NULL,
+									* then a default routine will be used to generate the subsets */
+						0,		  /* I: the number of subsets, not used if sets == NULL */
+						residual, /* I: function which calculates the residuals */
+						estimator,
+						1, /* I: set 1 if `residual' computes the squared residuals */
+						0,	/* I: verbose mode */
+						1,	/* I: maximum number of solutions given by "estimator" */
+						3,	/* I: gate value for outlier detection, a value in [2, 4] */
+						0,	/* I: if > 0.0, LMedS stops when a subset gives a median
+								* residual less than `prematureResidual'.
+								* The specified value must be in accordance with `residual' */
+						8,	/* I: dimension of the parameter vector */
+						.5, /* I: the percentage
+								(between epsilon and 1.0) of good data. An appropriate
+									choice is often 0.5 */
+						H,	/* O: the corresponding estimate of parameters */
+						0,		/* O: best subset retained, can be set to NULL */
+						outliers,	/* O: the outliers detected by LMedS */
+						&nbOutliers	/* O: the number of detected outliers */
+    );
+
+	return 0;
+}
+*/
